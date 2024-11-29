@@ -1,0 +1,45 @@
+{% extends "base.html"%}
+
+{% block cuerpo%}
+<div class="row">
+<div class="col-md-4 offset-md-4">
+    <!-- La terjeta card-->
+    <div class="card">
+        <div class="card-body">
+        <form action="{% url 'editarRefugio' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="" id="txtid" name="txtid" class="form-control" value="{{misrefugios.id}}" minLenght="3" maxlenght="100" required>
+            </div>
+            <div class="form-group py-3">
+              <input type="number" id="numperros" name="numperros" class="form-control" value="{{misrefugios.cantperros}}" maxlenght="100" required>
+            </div>
+            <div class="form-group py-2">
+              <input type="number" id="txtempleados" name="txtempleados" class="form-control" value="{{misrefugios.empleados}}" maxlenght="100" required>
+            </div>
+
+            <div class="form-group py-3">
+              <input type="number" id="numtelefono" name="numtelefono" class="form-control" value="{{misrefugios.telefono}}" maxlenght="10" required>
+            </div>
+
+
+            <div class="form-group py-3">
+              <input type="number" id="numcomida" name="numcomida" class="form-control" value="{{misrefugios.cantcomida}}" min="1" required>
+            </div>
+
+           
+            <div class="form-group py-3">
+              <input type="text" id="txtencargado" name="txtencargado" class="form-control" value="{{misrefugios.encargado}}" min="1" required>
+            </div>
+
+
+            <div class="form-group py-2">
+              <button  type="submit" class="btn btn-primary" >Guardar</button>
+            </div>
+
+        </form>
+        </div>
+        </div>
+</div>
+</div>    
+{%endblock%}

@@ -1,0 +1,41 @@
+{% extends "base.html"%}
+
+{% block cuerpo%}
+<div class="row">
+<div class="col-md-4 offset-md-4">
+    <!-- La terjeta card-->
+    <div class="card">
+        <div class="card-body">
+        <form action="/editarPerro/" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+            <input type="text" id="txtcodigo" name="txtcodigo" class="form-control" value="{{misperros.codigo}}" minLenght="3" maxlenght="7" readonly required>
+            </div>
+            <div class="form-group py-3">
+            <input type="text" id="txtraza" name="txtraza" class="form-control" value="{{misperros.raza}}" maxlenght="100" required>
+            </div>
+            <div class="form-group py-2">
+            <input type="text" id="numedad" name="numedad" class="form-control" value="{{misperros.edad}}" min="1" max="2" required>
+            </div>
+            <div class="form-group py-3">
+                    <input type="text" id="txtcomportamiento" name="txtcomportamiento" class="form-control" placeholder="Nombre comportamiento" maxlenght="100" required>
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="text" id="txtvacunas" name="txtvacunas" class="form-control" placeholder="Vacunas" maxlenght="100" required>
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="text" id="txtsexo" name="txtsexo" class="form-control" placeholder="Sexo" maxlenght="100" required>
+                  </div>
+
+            <div class="form-group py-2">
+            <button  type="submit" class="btn btn-primary" >Guardar</button>
+            </div>
+
+        </form>
+        </div>
+        </div>
+</div>
+</div>    
+{%endblock%}

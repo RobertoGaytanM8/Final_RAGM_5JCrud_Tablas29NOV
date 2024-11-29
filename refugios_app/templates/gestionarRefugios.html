@@ -1,0 +1,91 @@
+{%extends "base.html"%}
+{% load static %}
+{% block cuerpo%}
+
+    <div class="row">
+        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <h1>Agregar Refugios</h1>
+            <div class="card">
+              <div class="card-body">
+                <form action="{% url 'registrarRefugio' %}" method="POST">
+
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <input type="text" id="txtid" name="txtid" class="form-control" placeholder="ID" minLenght="3" maxlenght="100" required>
+                  </div>
+                  <div class="form-group py-3">
+                    <input type="number" id="numperros" name="numperros" class="form-control" placeholder="Cantidad de perros" maxlenght="1000" required>
+                  </div>
+                  <div class="form-group py-2">
+                    <input type="number" id="txtempleados" name="txtempleados" class="form-control" placeholder="Empleados" maxlength="100" required>
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="number" id="numtelefono" name="numtelefono" class="form-control" placeholder="Telefono" maxlenght="10" required>
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="number" id="numcomida" name="numcomida" class="form-control" placeholder="Cantidad de comida" max="100" required>
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="text" id="txtencargado" name="txtencargado" class="form-control" placeholder="Encargado del refugio"  required>
+                  </div>
+
+                  <div class="form-group py-2">
+                    <button  type="submit" class="btn btn-primary" >Guardar</button>
+                  </div>
+                  
+  
+                </form>
+              </div>
+            </div>
+        </div>
+    
+        <div class="col-sm-12 col-md-4 col-lg-8 ">
+            <h1>Listado de Refugios</h1>
+            <img src="{% static 'img/refugios.jpg' %}" alt="Ejemplo de imagen">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">CantPerros</th>
+                    <th scope="col">Empleados</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">CantComida</th>
+                    <th scope="col">Encargado</th>
+
+                    <th scope="col">-</th>
+
+
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for q in misrefugios %}
+                      <tr>
+                        <td>
+                          {{forloop.counter}}
+                        </td>
+                        <td>{{q.id}}</td>
+                        <td>{{q.cantperros}}</td>
+                        <td>{{q.empleados}}</td>
+                        <td>{{q.telefono}}</td>
+                        <td>{{q.cantcomida}}</td>
+                        <td>{{q.encargado}}</td>
+                        <td><a href="seleccionarRefugio/{{q.id}}" class="btn btn-success">Editar</a></td>
+                        <td><a href="borrarRefugio/{{q.id}}" class="btn btn-danger">Borrar</a></td>
+                      </tr>
+                    {% endfor %}
+
+                </tbody>
+              </table>
+        </div>
+    
+        </div>
+    </div>
+
+
+    
+{%endblock%}
