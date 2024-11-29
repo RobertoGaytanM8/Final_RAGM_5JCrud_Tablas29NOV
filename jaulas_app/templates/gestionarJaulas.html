@@ -1,0 +1,97 @@
+{%extends "base.html"%}
+{% load static %}
+{% block cuerpo%}
+
+    <div class="row">
+        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <h1>Agregar Jaulas</h1>
+            <div class="card">
+              <div class="card-body">
+                <form action="{% url 'registrarJaula' %}" method="POST">
+
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <input type="text" id="txtid" name="txtid" class="form-control" placeholder="ID" minLenght="3" maxlenght="100" required>
+                  </div>
+                  <div class="form-group py-3">
+                    <input type="text" id="txttipo" name="txttipo" class="form-control" placeholder="Tipo" maxlenght="10" required>
+                  </div>
+                  <div class="form-group py-2">
+                    <input type="number" id="numcapacidad" name="numcapacidad" class="form-control" placeholder="Capacidad" >
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="text" id="txtcandado" name="txtcandado" class="form-control" placeholder="Candado" maxlenght="10" required>
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="text" id="txtamano" name="txtamano" class="form-control" placeholder="Tamano" maxlenght="10" required>
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="number" id="numagua" name="numagua" class="form-control" placeholder="Contenedores de agua"  required>
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="number" id="numcomida" name="numcomida" class="form-control" placeholder="Contenedores de comida"  required>
+                  </div>
+
+                  <div class="form-group py-2">
+                    <button  type="submit" class="btn btn-primary" >Guardar</button>
+                  </div>
+                  
+  
+                </form>
+              </div>
+            </div>
+        </div>
+    
+        <div class="col-sm-12 col-md-4 col-lg-8 ">
+            <h1>Listado de Jaulas</h1>
+            <img src="{% static 'img/jaulas.jpg' %}" style="height: 200px;" alt="Ejemplo de imagen">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Capacidad</th>
+                    <th scope="col">Candado</th>
+                    <th scope="col">Tamaño</th>
+                    <th scope="col">Con.Agua</th>
+                    <th scope="col">Con.Comida</th>
+                    <th scope="col">-</th>
+
+
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for b in misjaulas %}
+                      <tr>
+                        <td>
+                          {{forloop.counter}}
+                        </td>
+                        <td>{{b.id}}</td>
+                        <td>{{b.tipo}}</td>
+                        <td>{{b.capacidad}}</td>
+                        <td>{{b.candado}}</td>
+                        <td>{{b.tamano}}</td>
+                        <td>{{b.agua}}</td>
+                        <td>{{b.comida}}</td>
+
+                        <td><a href="seleccionarJaulas/{{b.id}}" class="btn btn-success">Editar</a></td>
+                        <td><a href="borrarJaulas/{{b.id}}" class="btn btn-danger">Borrar</a></td>
+                      </tr>
+                    {% endfor %}
+
+                </tbody>
+              </table>
+        </div>
+    
+        </div>
+    </div>
+
+
+    
+{%endblock%}

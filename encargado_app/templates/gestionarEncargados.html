@@ -1,0 +1,91 @@
+{%extends "base.html"%}
+{% load static %}
+{% block cuerpo%}
+
+    <div class="row">
+        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <h1>Agregar Encargados</h1>
+            <div class="card">
+              <div class="card-body">
+                <form action="{% url 'registrarEncargados' %}" method="POST">
+
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <input type="text" id="txtid" name="txtid" class="form-control" placeholder="ID" minLenght="3" maxlenght="100" required>
+                  </div>
+                  <div class="form-group py-3">
+                    <input type="text" id="txtnombre" name="txtnombre" class="form-control" placeholder="nombre" maxlenght="10" required>
+                  </div>
+                  <div class="form-group py-2">
+                    <input type="text" id="txtapellidos" name="txtapellidos" class="form-control" placeholder="Apellidos" >
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="text" id="txtdni" name="txtdni" class="form-control" placeholder="DNI" maxlenght="10" required>
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="date" id="datefec" name="datefec" class="form-control" placeholder="Fecha de ingreso" required>
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="text" id="txtsexo" name="txtsexo" class="form-control" placeholder="Sexo"  required>
+                  </div>
+
+                  <div class="form-group py-2">
+                    <button  type="submit" class="btn btn-primary" >Guardar</button>
+                  </div>
+                  
+  
+                </form>
+              </div>
+            </div>
+        </div>
+    
+        <div class="col-sm-12 col-md-4 col-lg-8 ">
+            <h1>Listado de Encargados</h1>
+            <img src="{% static 'img/encargado.jpg' %}" alt="Ejemplo de imagen">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">DNI</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Sexo</th>
+
+                    <th scope="col">-</th>
+
+
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for f in misencargados %}
+                      <tr>
+                        <td>
+                          {{forloop.counter}}
+                        </td>
+                        <td>{{f.id}}</td>
+                        <td>{{f.nombre}}</td>
+                        <td>{{f.apellidos}}</td>
+                        <td>{{f.dni}}</td>
+                        <td>{{f.fechaenc}}</td>
+                        <td>{{f.sexo}}</td>
+                        <td><a href="seleccionarEncargados/{{f.id}}" class="btn btn-success">Editar</a></td>
+                        <td><a href="borrarEncargados/{{f.id}}" class="btn btn-danger">Borrar</a></td>
+                      </tr>
+                    {% endfor %}
+
+                </tbody>
+              </table>
+        </div>
+    
+        </div>
+    </div>
+
+
+    
+{%endblock%}

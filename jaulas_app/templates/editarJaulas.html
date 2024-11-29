@@ -1,0 +1,45 @@
+{% extends "base.html"%}
+
+{% block cuerpo%}
+<div class="row">
+<div class="col-md-4 offset-md-4">
+    <!-- La terjeta card-->
+    <div class="card">
+        <div class="card-body">
+        <form action="{% url 'editarJaula' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="text" id="txtid" name="txtid" class="form-control" value="{{misjaulas.id}}" minLenght="3" maxlenght="100" required>
+            </div>
+            <div class="form-group py-3">
+              <input type="text" id="txttipo" name="txttipo" class="form-control" value="{{misjaulas.tipo}}" maxlenght="100" required>
+            </div>
+            <div class="form-group py-2">
+              <input type="number" id="numcapacidad" name="numcapacidad" class="form-control" value="{{misjaulas.capacidad}}" maxlenght="100" required>
+            </div>
+
+            <div class="form-group py-3">
+              <input type="text" id="txtcandado" name="txtcandado" class="form-control" value="{{misjaulas.candado}}" maxlenght="10" required>
+            </div>
+
+            <div class="form-group py-3">
+                <input type="text" id="txtamano" name="txtamano" class="form-control" value="{{misjaulas.tamano}}" maxlenght="10" required>
+              </div>
+            <div class="form-group py-3">
+              <input type="number" id="numagua" name="numagua" class="form-control" value="{{misjaulas.agua}}" min="1" required>
+            </div>
+
+            <div class="form-group py-3">
+              <input type="number" id="numcomida" name="numcomida" class="form-control" value="{{misjaulas.comida}}" maxlenght="100" required>
+            </div>
+
+            <div class="form-group py-2">
+              <button  type="submit" class="btn btn-primary" >Guardar</button>
+            </div>
+
+        </form>
+        </div>
+        </div>
+</div>
+</div>    
+{%endblock%}
